@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/math-quiz/static/css/main.2fffebbb.css",
+    "main.js": "/math-quiz/static/js/main.4e7356df.js",
+    "index.html": "/math-quiz/index.html",
+    "main.2fffebbb.css.map": "/math-quiz/static/css/main.2fffebbb.css.map",
+    "main.4e7356df.js.map": "/math-quiz/static/js/main.4e7356df.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2fffebbb.css",
+    "static/js/main.4e7356df.js"
+  ]
+}
