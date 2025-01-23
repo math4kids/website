@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider>
       <UserProvider>
-        <Router>
+        <Router basename="/website">
           <div className="app">
             <Header />
             <Routes>
