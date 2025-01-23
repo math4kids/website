@@ -1,5 +1,5 @@
 .virtual-keyboard {
-  margin-top: 20px;
+  margin-top: 0;
   user-select: none;
   width: 100%;
   max-width: 400px; /* Limit maximum width */
