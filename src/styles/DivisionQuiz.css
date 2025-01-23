@@ -1,0 +1,78 @@
+@import './shared-quiz.css';
+
+.division-quiz {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: var(--text-color);
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.number-button {
+  height: 80px;
+  font-size: 24px;
+  background-color: var(--card-background);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.number-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.number-selection h2 {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.division-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 120px;
+  font-weight: bold;
+  font-family: monospace;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  color: var(--text-color);
+  width: 200px;
+  margin: 0 auto 2rem;
+}
+
+.question-line {
+  width: 100%;
+  height: 5px;
+  background-color: var(--text-color);
+  margin: 20px 0;
+}
+
+@media (max-width: 640px) {
+  .number-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .question {
+    font-size: 96px;
+  }
+} 

@@ -1,0 +1,78 @@
+.virtual-keyboard {
+  margin-top: 20px;
+  user-select: none;
+  width: 100%;
+  max-width: 400px; /* Limit maximum width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.keyboard-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  gap: 10px;
+  margin: 5px 0;
+  padding: 0 10px;
+}
+
+.keyboard-key {
+  font-size: 20px;
+  aspect-ratio: 1; /* Make buttons square */
+  width: 100%; /* Take full width of grid cell */
+  border: none;
+  border-radius: 5px;
+  background-color: #2196F3;
+  color: white;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500; /* Make text slightly bolder */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add subtle text shadow */
+}
+
+.keyboard-key:hover {
+  color: #E3F2FD; /* Light blue text color */
+  transform: scale(0.98);
+}
+
+.keyboard-key.active {
+  background-color: #1976D2; /* Darker blue when active */
+  transform: scale(0.95);
+}
+
+.special-key {
+  background-color: #FF5722; /* Orange for special keys */
+}
+
+.special-key:hover {
+  color: #FFCCBC; /* Light orange text color */
+}
+
+.clear-btn {
+  background-color: #e74c3c !important;
+}
+
+.clear-btn:hover {
+  background-color: #c0392b !important;
+}
+
+.enter-btn {
+  background-color: #27ae60 !important;
+}
+
+.enter-btn:hover {
+  background-color: #219a52 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .virtual-keyboard {
+    max-width: 300px;
+  }
+  
+  .keyboard-key {
+    font-size: 18px;
+  }
+} 

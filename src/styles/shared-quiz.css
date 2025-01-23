@@ -1,0 +1,38 @@
+.question-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;  /* Right align all items */
+  font-size: 120px;
+  font-weight: bold;
+  font-family: monospace;
+  color: var(--text-color);
+  gap: 30px;  /* Consistent vertical spacing */
+  width: fit-content;  /* Only as wide as needed */
+  position: relative;  /* For absolute positioning of the line */
+}
+
+.question-line {
+  width: 120%;  /* Extend beyond the numbers */
+  height: 4px;
+  background-color: var(--text-color);
+  margin-top: 30px;
+  position: relative;
+  left: -10%;  /* Center the extended line */
+}
+
+/* Remove any extra spacing from the numbers themselves */
+.number {
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .question {
+    font-size: 96px;
+  }
+} 

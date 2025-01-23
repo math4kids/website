@@ -1,0 +1,86 @@
+@import './shared-quiz.css';
+
+.random-mix-quiz {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: var(--text-color);
+}
+
+.quiz-question {
+  text-align: center;
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 120px;
+  font-weight: bold;
+  font-family: monospace;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  color: var(--text-color);
+  width: 200px;
+  margin: 0 auto 2rem;
+}
+
+.question-line {
+  width: 100%;
+  height: 5px;
+  background-color: var(--text-color);
+  margin: 20px 0;
+}
+
+.answer-input {
+  width: 120%;
+  height: 100px;
+  font-size: 72px;
+  text-align: center;
+  border: 3px solid var(--text-color);
+  border-radius: 0;
+  margin-top: 10px;
+  appearance: none;
+  -moz-appearance: textfield;
+  font-family: monospace;
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.answer-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.name-input h2 {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.division-row,
+.subtraction-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+@media (max-width: 640px) {
+  .question {
+    font-size: 96px;
+  }
+  
+  .answer-input {
+    font-size: 60px;
+    height: 80px;
+  }
+} 
