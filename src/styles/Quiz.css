@@ -16,9 +16,9 @@
 
 .number-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
-  max-width: 400px;
+  max-width: 600px;
   margin: 20px auto;
 }
 
@@ -173,6 +173,13 @@
 
   .answer-input {
     width: 150px;
+  }
+}
+
+@media (max-width: 640px) {
+  .number-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }
 

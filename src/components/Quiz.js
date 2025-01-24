@@ -90,6 +90,12 @@ function Quiz({ type, generateQuestions }) {
 
   const handleNameSubmit = (submittedName) => {
     setName(submittedName);
+    setStep('multiplier');
+  };
+
+  const handleMultiplierSelect = (number) => {
+    setSelectedNumber(number);
+    setQuestions(generateQuestions(number));
     setStep('quiz');
     setStartTime(new Date());
   };
@@ -193,6 +199,23 @@ function Quiz({ type, generateQuestions }) {
 
       {step === 'name' && (
         <NameInput onComplete={handleNameSubmit} />
+      )}
+
+      {step === 'multiplier' && (
+        <div className="number-select">
+          <h2>Select a number to practice</h2>
+          <div className="number-grid">
+            {[...Array(12)].map((_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handleMultiplierSelect(index + 1)}
+                className="number-button"
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+        </div>
       )}
 
       {step === 'quiz' && questions.length > 0 && (
