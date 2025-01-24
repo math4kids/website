@@ -263,10 +263,10 @@ function Quiz({ type, generateQuestions, userName }) {
       {step === 'quiz' && questions.length > 0 && (
         <div className="quiz-question">
           <div className="quiz-header">
-            <div className="timer">Time: {formatTime(quizTime)}</div>
             <div className="progress-wrapper">
               <div className="progress-text">
                 <span>Question {currentQuestion + 1} of {questions.length}</span>
+                <div className="timer">Time: {formatTime(quizTime)}</div>
                 <span className="streak-count">
                   Correct: {totalCorrect}
                 </span>
