@@ -2,40 +2,36 @@ import React from 'react';
 import Quiz from './Quiz';
 
 function RandomMixQuiz() {
-  const generateQuestions = (count) => {
+  const generateQuestions = (count, multiplier) => {
     const questions = [];
     const operations = [
       {
         symbol: '+',
         generate: () => {
-          const num1 = Math.floor(Math.random() * 100) + 1;
-          const num2 = Math.floor(Math.random() * 100) + 1;
-          return { question: `${num1} + ${num2}`, answer: num1 + num2 };
+          const num2 = Math.floor(Math.random() * 12) + 1;
+          return { question: `${multiplier} + ${num2}`, answer: multiplier + num2 };
         }
       },
       {
         symbol: '-',
         generate: () => {
-          const num1 = Math.floor(Math.random() * 100) + 1;
-          const num2 = Math.floor(Math.random() * num1) + 1;
-          return { question: `${num1} - ${num2}`, answer: num1 - num2 };
+          const num2 = Math.floor(Math.random() * multiplier) + 1;
+          return { question: `${multiplier} - ${num2}`, answer: multiplier - num2 };
         }
       },
       {
         symbol: '×',
         generate: () => {
-          const num1 = Math.floor(Math.random() * 12) + 1;
           const num2 = Math.floor(Math.random() * 12) + 1;
-          return { question: `${num1} × ${num2}`, answer: num1 * num2 };
+          return { question: `${multiplier} × ${num2}`, answer: multiplier * num2 };
         }
       },
       {
         symbol: '÷',
         generate: () => {
-          const divisor = Math.floor(Math.random() * 12) + 1;
-          const quotient = Math.floor(Math.random() * 12) + 1;
-          const dividend = divisor * quotient;
-          return { question: `${dividend} ÷ ${divisor}`, answer: quotient };
+          const num2 = Math.floor(Math.random() * 12) + 1;
+          const dividend = multiplier * num2;
+          return { question: `${dividend} ÷ ${multiplier}`, answer: num2 };
         }
       }
     ];

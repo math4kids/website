@@ -24,6 +24,7 @@ function Quiz({ type, generateQuestions }) {
   const timerRef = useRef(null);
   const [progressColor, setProgressColor] = useState('#2196F3');
   const [totalCorrect, setTotalCorrect] = useState(0);
+  const [selectedMultiplier, setSelectedMultiplier] = useState(null);
 
   useEffect(() => {
     if (step === 'quiz') {
@@ -84,7 +85,6 @@ function Quiz({ type, generateQuestions }) {
 
   const handleNumberSelect = (number) => {
     setSelectedNumber(number);
-    setQuestions(generateQuestions(number));
     setStep('name');
   };
 
@@ -94,8 +94,8 @@ function Quiz({ type, generateQuestions }) {
   };
 
   const handleMultiplierSelect = (number) => {
-    setSelectedNumber(number);
-    setQuestions(generateQuestions(number));
+    setSelectedMultiplier(number);
+    setQuestions(generateQuestions(selectedNumber, number));
     setStep('quiz');
     setStartTime(new Date());
   };
