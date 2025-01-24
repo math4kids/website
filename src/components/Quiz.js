@@ -4,7 +4,7 @@ import NameInput from './NameInput';
 import '../styles/Quiz.css';
 import QuizResults from './common/QuizResults';
 
-function Quiz({ type, generateQuestions }) {
+function Quiz({ type, generateQuestions, userName }) {
   const [step, setStep] = useState('select');
   const [selectedNumber, setSelectedNumber] = useState(null);
   const [name, setName] = useState('');
@@ -144,6 +144,15 @@ function Quiz({ type, generateQuestions }) {
   };
 
   const renderQuestion = (question) => {
+    if (type === 'algebra') {
+      const [num1, num2] = question.question.split(',');
+      return (
+        <>
+          <div>{num1.trim()}</div>
+          <div>{num2.trim()}, What is the value of y?</div>
+        </>
+      );
+    }
     const [num1, num2] = question.question.split(/[\+\-×÷]/);
     const operator = question.question.match(/[\+\-×÷]/)[0];
     
@@ -167,6 +176,8 @@ function Quiz({ type, generateQuestions }) {
         return 'Division Quiz';
       case 'random-mix':
         return 'Mixed Operations Quiz';
+      case 'algebra':
+          return 'Algebra Quiz';
       default:
         return 'Math Quiz';
     }

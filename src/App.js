@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import QuizList from './components/QuizList';
 import MultiplicationQuiz from './components/MultiplicationQuiz';
@@ -6,6 +6,7 @@ import AdditionQuiz from './components/AdditionQuiz';
 import SubtractionQuiz from './components/SubtractionQuiz';
 import DivisionQuiz from './components/DivisionQuiz';
 import RandomMixQuiz from './components/RandomMixQuiz';
+import AlgebraQuizPage from './pages/AlgebraQuizPage';
 import { ThemeProvider } from './context/ThemeContext';
 import { UserProvider } from './context/UserContext';
 import './App.css';
@@ -14,7 +15,7 @@ function App() {
   return (
     <ThemeProvider>
       <UserProvider>
-        <Router basename="/website">
+        <Router>
           <div className="app">
             <Header />
             <Routes>
@@ -24,6 +25,7 @@ function App() {
               <Route path="/subtraction" element={<SubtractionQuiz />} />
               <Route path="/division" element={<DivisionQuiz />} />
               <Route path="/random-mix" element={<RandomMixQuiz />} />
+              <Route path="/algebra" element={<AlgebraQuizPage />} />
             </Routes>
           </div>
         </Router>

@@ -27,6 +27,11 @@ function QuizList() {
       id: 'random-mix',
       title: 'Random Mix',
       description: 'Practice all operations randomly'
+    },
+    {
+      id: 'algebra',
+      title: 'Algebra',
+      description: 'Practice solving algebraic equations'
     }
   ];
 
