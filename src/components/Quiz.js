@@ -11,8 +11,8 @@ function Quiz({ type, generateQuestions }) {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
+  const [startTime, setStartTime] = useState(Date.now());
+  const [endTime, setEndTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -132,6 +132,7 @@ function Quiz({ type, generateQuestions }) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
       }
+      setEndTime(Date.now());
       setStep('results');
     }
   };
@@ -175,6 +176,36 @@ function Quiz({ type, generateQuestions }) {
     if (step === 'quiz' && answerInputRef.current) {
       answerInputRef.current.focus();
     }
+  };
+
+  const getResultsClass = (percentage) => {
+    if (percentage === 100) return 'perfect';
+    if (percentage >= 80) return 'good';
+    return 'needs-practice';
+  };
+
+  const getResultsEmoji = (percentage) => {
+    if (percentage === 100) {
+      return '🎉 🌟 🎊 🏆';  // Celebration emojis
+    }
+    if (percentage >= 80) {
+      return '👍 💪 ⭐';     // Good job emojis
+    }
+    return '😢 💪 📚';      // Encouragement emojis
+  };
+
+  const percentage = questions.length > 0 ? (totalCorrect / questions.length) * 100 : 0;
+  const score = totalCorrect; // This is the total correct answers
+
+  const totalTime = endTime - startTime; // in milliseconds
+  const averageTimePerQuestion = totalTime / questions.length / 1000; // in seconds
+
+  const handleTryAgain = () => {
+    setStep('select');
+    setCurrentQuestion(0);
+    setAnswers([]);
+    setTotalCorrect(0);
+    setProgressColor('#2196F3');
   };
 
   return (
@@ -264,11 +295,57 @@ function Quiz({ type, generateQuestions }) {
       )}
 
       {step === 'results' && (
-        <QuizResults
-          answers={answers}
-          totalTime={quizTime}
-          onRestart={() => window.location.reload()}
-        />
+        <div className={`quiz-results`} style={{ textAlign: 'center' }}>
+          <h2 style={{ color: '#721c24' }}>Quiz Complete!</h2>
+          <div className="result-emoji">
+            {getResultsEmoji(percentage)}
+          </div>
+          
+          {/* Calculate background color based on percentage */}
+          const backgroundColor = percentage === 100 ? 'green' : percentage < 80 ? 'lightgreen' : 'orange';
+
+          {/* Wrap score, total time, and average time in a separate div */}
+          <div style={{ backgroundColor, padding: '20px', borderRadius: '8px', margin: '20px 0' }}>
+            <div className="score-text" style={{ fontSize: '24px', color: '#721c24' }}>
+              Score: {score} / {questions.length} ({percentage.toFixed(2)}%)
+            </div>
+            <div style={{ color: '#721c24' }}>
+              Total Time: {(totalTime / 1000).toFixed(2)} seconds
+            </div>
+            <div style={{ color: '#721c24' }}>
+              Average Time per Question: {averageTimePerQuestion.toFixed(2)} seconds
+            </div>
+          </div>
+          
+          {/* Box for Detailed Results */}
+          <div style={{
+            border: '1px solid #007bff',
+            borderRadius: '8px',
+            padding: '16px',
+            backgroundColor: '#e7f1ff'
+          }}>
+            <h3 style={{ color: '#007bff' }}>Detailed Results:</h3>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              {answers.map((answer, index) => {
+                const isCorrect = answer.userAnswer === answer.correctAnswer;
+                return (
+                  <li key={index} style={{ color: isCorrect ? 'green' : 'red', margin: '10px 0' }}>
+                    <strong>#{index + 1}</strong> {answer.question} = {answer.correctAnswer} 
+                    {isCorrect ? (
+                      <span style={{ color: 'green' }}> ✔ {answer.userAnswer}</span>
+                    ) : (
+                      <span style={{ color: 'red' }}> ✖ {answer.userAnswer}</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          
+          <button onClick={handleTryAgain} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px' }}>
+            Try Again
+          </button>
+        </div>
       )}
     </div>
   );

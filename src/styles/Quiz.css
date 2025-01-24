@@ -229,4 +229,58 @@
   margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
+}
+
+.quiz-results {
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  text-align: center;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+}
+
+.quiz-results.perfect {
+  background: linear-gradient(to bottom right, #dcfce7, #bbf7d0);
+  border: 2px solid #22c55e;
+}
+
+.quiz-results.good {
+  background: linear-gradient(to bottom right, #ffedd5, #fed7aa);
+  border: 2px solid #f97316;
+}
+
+.quiz-results.needs-practice {
+  background: linear-gradient(to bottom right, #fee2e2, #fecaca);
+  border: 2px solid #ef4444;
+}
+
+.result-emoji {
+  font-size: 48px;
+  margin: 1rem 0;
+  animation: bounce 1s ease infinite;
+}
+
+.score-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.perfect .score-text {
+  color: #15803d;
+}
+
+.good .score-text {
+  color: #c2410c;
+}
+
+.needs-practice .score-text {
+  color: #b91c1c;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 } 
