@@ -294,59 +294,60 @@ function Quiz({ type, generateQuestions }) {
         </div>
       )}
 
-      {step === 'results' && (
-        <div className={`quiz-results`} style={{ textAlign: 'center' }}>
-          <h2 style={{ color: '#721c24' }}>Quiz Complete!</h2>
-          <div className="result-emoji">
-            {getResultsEmoji(percentage)}
-          </div>
-          
-          {/* Calculate background color based on percentage */}
-          const backgroundColor = percentage === 100 ? 'green' : percentage < 80 ? 'lightgreen' : 'orange';
+      {step === 'results' && (() => {
+        const backgroundColor = percentage === 100 ? 'green' : percentage < 80 ? 'lightgreen' : 'orange';
 
-          {/* Wrap score, total time, and average time in a separate div */}
-          <div style={{ backgroundColor, padding: '20px', borderRadius: '8px', margin: '20px 0' }}>
-            <div className="score-text" style={{ fontSize: '24px', color: '#721c24' }}>
-              Score: {score} / {questions.length} ({percentage.toFixed(2)}%)
+        return (
+          <div className={`quiz-results`} style={{ textAlign: 'center' }}>
+            <h2 style={{ color: '#721c24' }}>Quiz Complete!</h2>
+            <div className="result-emoji">
+              {getResultsEmoji(percentage)}
             </div>
-            <div style={{ color: '#721c24' }}>
-              Total Time: {(totalTime / 1000).toFixed(2)} seconds
+            
+            {/* Wrap score, total time, and average time in a separate div */}
+            <div style={{ backgroundColor, padding: '20px', borderRadius: '8px', margin: '20px 0' }}>
+              <div className="score-text" style={{ fontSize: '24px', color: '#721c24' }}>
+                Score: {score} / {questions.length} ({percentage.toFixed(2)}%)
+              </div>
+              <div style={{ color: '#721c24' }}>
+                Total Time: {(totalTime / 1000).toFixed(2)} seconds
+              </div>
+              <div style={{ color: '#721c24' }}>
+                Average Time per Question: {averageTimePerQuestion.toFixed(2)} seconds
+              </div>
             </div>
-            <div style={{ color: '#721c24' }}>
-              Average Time per Question: {averageTimePerQuestion.toFixed(2)} seconds
+            
+            {/* Box for Detailed Results */}
+            <div style={{
+              border: '1px solid #007bff',
+              borderRadius: '8px',
+              padding: '16px',
+              backgroundColor: '#e7f1ff'
+            }}>
+              <h3 style={{ color: '#007bff' }}>Detailed Results:</h3>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                {answers.map((answer, index) => {
+                  const isCorrect = answer.userAnswer === answer.correctAnswer;
+                  return (
+                    <li key={index} style={{ color: isCorrect ? 'green' : 'red', margin: '10px 0' }}>
+                      <strong>#{index + 1}</strong> {answer.question} = {answer.correctAnswer} 
+                      {isCorrect ? (
+                        <span style={{ color: 'green' }}> ✔ {answer.userAnswer}</span>
+                      ) : (
+                        <span style={{ color: 'red' }}> ✖ {answer.userAnswer}</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
+            
+            <button onClick={handleTryAgain} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px' }}>
+              Try Again
+            </button>
           </div>
-          
-          {/* Box for Detailed Results */}
-          <div style={{
-            border: '1px solid #007bff',
-            borderRadius: '8px',
-            padding: '16px',
-            backgroundColor: '#e7f1ff'
-          }}>
-            <h3 style={{ color: '#007bff' }}>Detailed Results:</h3>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-              {answers.map((answer, index) => {
-                const isCorrect = answer.userAnswer === answer.correctAnswer;
-                return (
-                  <li key={index} style={{ color: isCorrect ? 'green' : 'red', margin: '10px 0' }}>
-                    <strong>#{index + 1}</strong> {answer.question} = {answer.correctAnswer} 
-                    {isCorrect ? (
-                      <span style={{ color: 'green' }}> ✔ {answer.userAnswer}</span>
-                    ) : (
-                      <span style={{ color: 'red' }}> ✖ {answer.userAnswer}</span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          
-          <button onClick={handleTryAgain} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px' }}>
-            Try Again
-          </button>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 }
