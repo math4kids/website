@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import VirtualKeyboard from './VirtualKeyboard';
 import NameInput from './NameInput';
 import '../styles/Quiz.css';
-import QuizResults from './common/QuizResults';
 
 function Quiz({ type, generateQuestions, userName }) {
   const [step, setStep] = useState('select');
@@ -336,21 +335,31 @@ function Quiz({ type, generateQuestions, userName }) {
               backgroundColor: '#e7f1ff'
             }}>
               <h3 style={{ color: '#007bff' }}>Detailed Results:</h3>
-              <ul style={{ listStyleType: 'none', padding: 0 }}>
-                {answers.map((answer, index) => {
-                  const isCorrect = answer.userAnswer === answer.correctAnswer;
-                  return (
-                    <li key={index} style={{ color: isCorrect ? 'green' : 'red', margin: '10px 0' }}>
-                      <strong>#{index + 1}</strong> {answer.question} = {answer.correctAnswer} 
-                      {isCorrect ? (
-                        <span style={{ color: 'green' }}> ✔ {answer.userAnswer}</span>
-                      ) : (
-                        <span style={{ color: 'red' }}> ✖ {answer.userAnswer}</span>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
+              <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                <thead>
+                  <tr>
+                    <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Question</th>
+                    <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Answer</th>
+                    <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Correct?</th>
+                    <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Your Answer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {answers.map((answer, index) => {
+                    const isCorrect = answer.userAnswer === answer.correctAnswer;
+                    return (
+                      <tr key={index} style={{ backgroundColor: isCorrect ? '#e6f4ea' : '#ffe6e6' }}>
+                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{answer.question}</td>
+                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{answer.correctAnswer}</td>
+                        <td style={{ border: '1px solid #ddd', padding: '8px', color: isCorrect ? 'green' : 'red' }}>
+                          {isCorrect ? '✔' : '✖'}
+                        </td>
+                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{answer.userAnswer}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
             
             <button onClick={handleTryAgain} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px' }}>
