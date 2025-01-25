@@ -149,7 +149,7 @@ function Quiz({ type, generateQuestions, userName }) {
       return (
         <>
           <div>{num1.trim()}</div>
-          <div>{num2.trim()}, What is the value of y?</div>
+          <div>{num2.trim()}, Then y = ?</div>
         </>
       );
     }

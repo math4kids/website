@@ -18,7 +18,7 @@ const Progress = styled.div`
 `;
 
 export const ProgressBar = ({ current, total }) => {
-  const progress = (current / total) * 100;
+  const progress = ((current-0) / total) * 100;
   return (
     <ProgressContainer>
       <Progress progress={progress} />

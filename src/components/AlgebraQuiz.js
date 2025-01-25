@@ -11,7 +11,7 @@ function AlgebraQuiz({ questionCount, userName }) {
       attempts++;
       const coefficient = Math.floor(Math.random() * 20) + 1; // Random coefficient for x
       const constant = Math.floor(Math.random() * 20) + 1; // Random constant
-      const question = `If y = ${coefficient}x + ${constant}, Given x = ${multiplier}`;
+      const question = `If y = ${coefficient}x + ${constant}, x = ${multiplier}, then y = ?`;
       const answer = coefficient * multiplier + constant;
 
       questions.push({

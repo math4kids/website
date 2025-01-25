@@ -5,7 +5,7 @@ function QuizList() {
   const quizzes = [
     {
       id: 'multiplication',
-      title: 'Multiplication Tables',
+      title: 'Multiplication',
       description: 'Practice multiplication from 1 to 12'
     },
     {
